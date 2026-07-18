@@ -27,3 +27,21 @@ Backend
 cd Backend
 npm install
 npm start
+
+# 📸 Screenshots
+
+## 🏠 Home Page
+
+![Home Page](assets/Homepage.png)
+
+---
+
+## 💬 Chat Interface
+
+![Chat Interface](assets/chat.png)
+
+---
+
+## ➕ Create New Chat
+
+![New Chat](assets/newchat.png)
