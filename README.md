@@ -21,6 +21,29 @@ SigmaGPT is a ChatGPT-inspired AI chatbot built using the MERN Stack.
 - Gemini API
 
 ---
+## 📂 Project Structure
+
+```text
+SigmaGPT
+│
+├── Backend
+│   ├── models
+│   ├── routes
+│   ├── utils
+│   ├── server.js
+│   └── package.json
+│
+├── Frontend
+│   ├── src
+│   ├── components
+│   ├── context
+│   ├── App.jsx
+│   └── package.json
+│
+├── assets
+├── README.md
+└── .gitignore
+```
 
 ## 📦 Installation
 
