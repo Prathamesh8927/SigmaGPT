@@ -2,16 +2,17 @@
 
 SigmaGPT is a ChatGPT-inspired AI chatbot built using the MERN Stack.
 
-## Features
+## 🚀 Features
 
 - AI Chat
 - Multiple Chat Threads
-- Gemini API Integration
-- MongoDB Database
-- React + Vite Frontend
-- Express Backend
+- Chat History
+- Gemini API
+- MongoDB Storage
 
-## Tech Stack
+---
+
+## 🛠 Tech Stack
 
 - React
 - Node.js
@@ -19,14 +20,27 @@ SigmaGPT is a ChatGPT-inspired AI chatbot built using the MERN Stack.
 - MongoDB
 - Gemini API
 
-## Installation
+---
 
-Backend
+## 📦 Installation
+
+### Backend
 
 ```bash
 cd Backend
 npm install
 npm start
+```
+
+### Frontend
+
+```bash
+cd Frontend
+npm install
+npm run dev
+```
+
+---
 
 # 📸 Screenshots
 
@@ -42,6 +56,12 @@ npm start
 
 ---
 
-## ➕ Create New Chat
+## ➕ New Chat
 
 ![New Chat](assets/newchat.png)
+
+---
+
+## 👨‍💻 Author
+
+**Prathamesh Mandage**
