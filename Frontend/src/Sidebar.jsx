@@ -1,7 +1,7 @@
 import "./Sidebar.css";
 import { useContext, useEffect } from "react";
 import { MyContext } from "./Mycontext";
-import {v1 as uuidv1} from "uuid"
+import {v1 as uuidv1} from "uuid";
 function Sidebar(){
 
 const {allthreads,setallthreads,currentThreadId,setcurrentThreadId,prevChat,setprevChat,newChat,setnewChat,prompt,setprompt,reply,setreply}=useContext(MyContext);
