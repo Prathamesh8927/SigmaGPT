@@ -1,111 +1,219 @@
+/* =====================================================
+   SIDEBAR
+===================================================== */
 
 .sidebar {
     background-color: #171717;
+
     color: #b4b4b4;
+
     height: 100dvh;
+
     width: 320px;
     min-width: 320px;
 
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 
     position: relative;
+
     z-index: 1001;
+
+    box-sizing: border-box;
+
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+
+    overflow: hidden;
 }
+
+
+/* =====================================================
+   NEW CHAT BUTTON
+===================================================== */
 
 .newChatButton {
     display: flex;
+
     justify-content: space-between;
     align-items: center;
 
-    margin: 10px;
-    padding: 10px;
+    margin: 12px;
 
-    width: calc(100% - 20px);
+    padding: 10px 12px;
+
+    width: calc(100% - 24px);
+
+    min-height: 48px;
 
     border-radius: 10px;
+
     background-color: transparent;
-    border: solid 0.5px rgba(255, 255, 255, 0.5);
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
 
     cursor: pointer;
-}
 
-.logo {
-    height: 25px;
-    width: 25px;
+    flex-shrink: 0;
 
-    background-color: white;
-    border-radius: 50%;
-}
-
-.newChatButton span {
-    font-size: 20px;
-    background-color: transparent;
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease;
 }
 
 .newChatButton:hover {
     background-color: rgba(255, 255, 255, 0.08);
+
+    border-color: rgba(255, 255, 255, 0.2);
 }
 
-/* =========================
-   HISTORY
-========================= */
+
+/* =====================================================
+   LOGO
+===================================================== */
+
+.logo {
+    height: 27px;
+    width: 27px;
+
+    background-color: white;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+}
+
+.newChatButton span {
+    font-size: 19px;
+
+    background-color: transparent;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* =====================================================
+   CHAT HISTORY
+===================================================== */
 
 .history {
-    margin: 10px;
-    padding: 10px;
+    margin: 6px 8px 8px;
 
-    height: 100%;
+    padding: 4px;
+
+    flex: 1;
+
+    min-height: 0;
+
     overflow-y: auto;
     overflow-x: hidden;
+
+    scrollbar-width: thin;
+
+    scrollbar-color:
+        rgba(255, 255, 255, 0.2)
+        transparent;
 }
+
+
+/* Chrome / Edge scrollbar */
+
+.history::-webkit-scrollbar {
+    width: 6px;
+}
+
+.history::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.history::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+
+    border-radius: 10px;
+}
+
+
+/* =====================================================
+   HISTORY ITEMS
+===================================================== */
 
 .history li {
     list-style-type: none;
+
     cursor: pointer;
 
-    padding: 8px 10px;
-    margin-bottom: 0.3rem;
+    padding: 10px 12px;
+
+    margin-bottom: 4px;
 
     font-size: 14px;
 
-    border: solid 1px transparent;
-    border-radius: 10px;
+    border: 1px solid transparent;
+
+    border-radius: 9px;
 
     position: relative;
 
     display: flex;
+
     align-items: center;
 
-    min-height: 38px;
+    min-height: 42px;
+
+    box-sizing: border-box;
+
+    transition:
+        background-color 0.15s ease,
+        border-color 0.15s ease;
 }
+
+.history li:hover {
+    background-color: rgba(180, 180, 180, 0.12);
+}
+
+
+/* =====================================================
+   THREAD TITLE
+===================================================== */
 
 .threadTitle {
     display: block;
 
-    width: calc(100% - 25px);
+    width: calc(100% - 28px);
 
     overflow: hidden;
+
     text-overflow: ellipsis;
+
     white-space: nowrap;
+
+    color: #e5e5e5;
 }
 
-.history li:hover {
-    background-color: rgba(180, 180, 180, 0.5);
-}
+
+/* =====================================================
+   DELETE BUTTON
+===================================================== */
 
 .fa-trash {
     opacity: 0;
 
     position: absolute;
-    right: 10px;
+
+    right: 11px;
 
     cursor: pointer;
+
+    font-size: 13px;
+
+    transition: opacity 0.15s ease;
 }
 
 .history li:hover .fa-trash {
     opacity: 1;
+
     color: #fff;
 }
 
@@ -113,65 +221,137 @@
     color: #f87171 !important;
 }
 
+
+/* =====================================================
+   ACTIVE THREAD
+===================================================== */
+
 .highlighted {
-    background-color: rgba(180, 180, 180, 0.5);
-    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.12);
+
+    border-radius: 9px;
+
+    border-color: rgba(255, 255, 255, 0.04);
 }
 
-/* =========================
-   SIGNATURE
-========================= */
+.highlighted:hover {
+    background-color: rgba(255, 255, 255, 0.16);
+}
+
+
+/* =====================================================
+   SIDEBAR FOOTER
+===================================================== */
 
 .sign {
-    margin: 10px;
-    padding: 10px;
+    margin: 8px 12px 12px;
 
-    font-size: 14px;
+    padding: 12px 8px;
+
+    font-size: 13px;
+
     text-align: center;
 
-    border-top: solid 0.25px rgba(255, 255, 255, 0.5);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+    color: #8f8f8f;
+
+    flex-shrink: 0;
 }
 
-/* =========================
+.sign p {
+    margin: 0;
+}
+
+
+/* =====================================================
    MOBILE CLOSE BUTTON
-========================= */
+===================================================== */
 
 .mobileCloseButton {
     display: none;
+
+    position: absolute;
+
+    top: 12px;
+    right: 12px;
+
+    width: 38px;
+    height: 38px;
+
+    margin: 0;
+    padding: 0;
+
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background-color: rgba(255, 255, 255, 0.08);
+
+    cursor: pointer;
+
+    z-index: 10;
 }
 
-/* =========================
-   MOBILE OVERLAY
-========================= */
+.mobileCloseButton:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.mobileCloseButton i {
+    font-size: 18px;
+}
+
+
+/* =====================================================
+   SIDEBAR OVERLAY
+===================================================== */
 
 .sidebarOverlay {
     display: none;
 }
 
-/* =========================
-   MOBILE SIDEBAR
-========================= */
+
+/* =====================================================
+   TABLET / MOBILE SIDEBAR
+===================================================== */
 
 @media (max-width: 768px) {
+
     .sidebar {
         position: fixed;
 
         top: 0;
         left: 0;
 
-        width: min(320px, 85vw);
+        width: min(320px, 86vw);
+
         min-width: 0;
+
         height: 100dvh;
 
-        transform: translateX(-100%);
-        transition: transform 0.25s ease;
+        transform: translateX(-105%);
 
-        box-shadow: 8px 0 25px rgba(0, 0, 0, 0.45);
+        transition:
+            transform 0.25s ease;
+
+        box-shadow:
+            8px 0 30px rgba(0, 0, 0, 0.5);
+
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
     }
+
+
+    /* OPEN SIDEBAR */
 
     .sidebar.sidebarOpen {
         transform: translateX(0);
     }
+
+
+    /* OVERLAY */
 
     .sidebarOverlay {
         display: block;
@@ -180,80 +360,122 @@
 
         inset: 0;
 
-        background-color: rgba(0, 0, 0, 0.55);
+        background-color: rgba(0, 0, 0, 0.6);
+
+        backdrop-filter: blur(2px);
 
         z-index: 1000;
     }
 
+
+    /* CLOSE BUTTON */
+
     .mobileCloseButton {
         display: flex;
-
-        position: absolute;
-
-        top: 10px;
-        right: 10px;
-
-        width: 38px;
-        height: 38px;
-
-        margin: 0;
-        padding: 0;
-
-        align-items: center;
-        justify-content: center;
-
-        border: none;
-        border-radius: 8px;
-
-        background-color: rgba(255, 255, 255, 0.08);
-
-        cursor: pointer;
-
-        z-index: 10;
     }
 
-    .mobileCloseButton:hover {
-        background-color: rgba(255, 255, 255, 0.15);
-    }
 
-    .mobileCloseButton i {
-        font-size: 18px;
-    }
+    /* NEW CHAT */
 
     .newChatButton {
-        margin-top: 60px;
+        margin-top: 62px;
+
+        min-height: 48px;
     }
+
+
+    /* HISTORY */
 
     .history {
-        padding: 5px;
-        margin: 10px;
+        margin: 8px;
+
+        padding: 4px;
     }
+
 
     .history li {
-        padding: 10px;
-        min-height: 42px;
+        padding: 11px 12px;
+
+        min-height: 44px;
     }
 
-    /* Always show delete icon on touch devices */
+
+    /* DELETE ICON */
+
     .fa-trash {
         opacity: 0.8;
     }
+
+
+    /* FOOTER */
+
+    .sign {
+        margin-bottom: 14px;
+    }
 }
 
-/* =========================
-   SMALL PHONES
-========================= */
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
 
 @media (max-width: 480px) {
+
     .sidebar {
-        width: 85vw;
+        width: 86vw;
     }
+
+
+    .newChatButton {
+        margin-left: 10px;
+        margin-right: 10px;
+
+        width: calc(100% - 20px);
+    }
+
 
     .history li {
         font-size: 13px;
+
+        padding: 11px;
     }
 
+
+    .threadTitle {
+        width: calc(100% - 25px);
+    }
+
+
     .sign {
+        font-size: 12px;
+
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}
+
+
+/* =====================================================
+   VERY SMALL PHONES
+===================================================== */
+
+@media (max-width: 360px) {
+
+    .sidebar {
+        width: 90vw;
+    }
+
+
+    .newChatButton {
+        min-height: 46px;
+    }
+
+
+    .history li {
+        min-height: 42px;
+
+        padding: 10px;
+
         font-size: 12px;
     }
 }
