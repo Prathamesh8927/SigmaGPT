@@ -1,102 +1,179 @@
+
 import "./Sidebar.css";
 import { useContext, useEffect } from "react";
 import { MyContext } from "./Mycontext";
-import {v1 as uuidv1} from "uuid";
-function Sidebar(){
+import { v1 as uuidv1 } from "uuid";
 
-const {allthreads,setallthreads,currentThreadId,setcurrentThreadId,prevChat,setprevChat,newChat,setnewChat,prompt,setprompt,reply,setreply}=useContext(MyContext);
+function Sidebar() {
+    const {
+        allthreads,
+        setallthreads,
+        currentThreadId,
+        setcurrentThreadId,
+        prevChat,
+        setprevChat,
+        setnewChat,
+        setprompt,
+        setreply,
+        sidebarOpen,
+        setSidebarOpen,
+    } = useContext(MyContext);
 
-const getallthreads=async()=>{
-    try {
-       const response= await fetch("http://localhost:8080/api/thread");
-       const res= await response.json();
-       const filterData= res.map(thread=>({
-        threadId: thread.threadId,
-        title: thread.title
-       }));
-     //  console.log(filterData);
-       setallthreads(filterData);
-       //threadid , title
-    } catch (error) {
-        console.log(error);
-    }
-};
+    const getallthreads = async () => {
+        try {
+            const response = await fetch("http://localhost:8080/api/thread");
+            const res = await response.json();
 
-useEffect(()=>{
-getallthreads();
-},[currentThreadId])
+            const filterData = res.map((thread) => ({
+                threadId: thread.threadId,
+                title: thread.title,
+            }));
 
+            setallthreads(filterData);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
-const createNewChat=() =>{
-    setnewChat(true);
-    setprompt("");
-    setreply(null);
-    setcurrentThreadId(uuidv1());
-    setprevChat([]);
-};
- const changeThread = async(newThreadId)=>{
-    setcurrentThreadId(newThreadId);
+    useEffect(() => {
+        getallthreads();
+    }, [currentThreadId]);
 
-    try {
-        const response= await fetch(`http://localhost:8080/api/thread/${newThreadId}`);
-        const res= await response.json();
-        console.log(res);
-        setprevChat(res);
+    const createNewChat = () => {
+        setnewChat(true);
+        setprompt("");
         setreply(null);
-        setnewChat(false);
-    } catch (error) {
-        console.log(error);
-    }
- };
+        setcurrentThreadId(uuidv1());
+        setprevChat([]);
 
- const deleteThread =async(threadId)=>{
-    try {
-       const response= await fetch(`http://localhost:8080/api/thread/${threadId}`, {method:"DELETE"});
-       const res= await response.json(); 
-       console.log(res);
+        // Close sidebar on mobile
+        setSidebarOpen(false);
+    };
 
-       //updated thread re-render
-       setallthreads(prev=>prev.filter(thread=>thread.threadId != threadId));
-       if(threadId=== currentThreadId){
-        createNewChat();
-       };
+    const changeThread = async (newThreadId) => {
+        setcurrentThreadId(newThreadId);
 
+        try {
+            const response = await fetch(
+                `http://localhost:8080/api/thread/${newThreadId}`
+            );
 
-    } catch (error) {
-        console.log(error);
-    }
- }
-    return(
-        <section className="sidebar">
-            {/* {new chat button} */}
-        <button onClick={createNewChat}>
-            <img src="src/assets/SigmGpt_logo.png" alt="Gpt logo " className="logo"></img>
-           <span> <i className="fa-solid fa-pen-to-square"></i> </span>
-        </button>
-            {/* history */}
-        <ul className="history">
-            {
-                allthreads?.map((thread,idx)=>(
-                    <li key={idx}
-                    onClick={(e)=>changeThread(thread.threadId)}
-                    className={thread.threadId===currentThreadId ? "highlighted": ""}
-                    >
-                        {thread.title}
-                        <i className="fa-solid fa-trash"
-                        onClick={(e)=>{
-                            e.stopPropagation();//stop event bubbling
-                            deleteThread(thread.threadId);
-                        }}></i>
-                    </li>
-                ))
+            const res = await response.json();
+
+            console.log(res);
+
+            setprevChat(res);
+            setreply(null);
+            setnewChat(false);
+
+            // Close sidebar on mobile
+            setSidebarOpen(false);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const deleteThread = async (threadId) => {
+        try {
+            const response = await fetch(
+                `http://localhost:8080/api/thread/${threadId}`,
+                {
+                    method: "DELETE",
+                }
+            );
+
+            const res = await response.json();
+
+            console.log(res);
+
+            setallthreads((prev) =>
+                prev.filter((thread) => thread.threadId !== threadId)
+            );
+
+            if (threadId === currentThreadId) {
+                createNewChat();
             }
-        </ul>
-            {/* sign */}
-        <div className="sign">
-            <p>By Prathamesh Mandage &hearts;</p>
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
-        </div>
-        </section>
-    )
+    return (
+        <>
+            {/* Mobile overlay */}
+            {sidebarOpen && (
+                <div
+                    className="sidebarOverlay"
+                    onClick={() => setSidebarOpen(false)}
+                ></div>
+            )}
+
+            <section
+                className={`sidebar ${
+                    sidebarOpen ? "sidebarOpen" : ""
+                }`}
+            >
+                {/* Mobile close button */}
+                <button
+                    className="mobileCloseButton"
+                    onClick={() => setSidebarOpen(false)}
+                    aria-label="Close sidebar"
+                >
+                    <i className="fa-solid fa-xmark"></i>
+                </button>
+
+                {/* New chat button */}
+                <button
+                    className="newChatButton"
+                    onClick={createNewChat}
+                >
+                    <img
+                        src="src/assets/SigmGpt_logo.png"
+                        alt="SigmaGPT logo"
+                        className="logo"
+                    />
+
+                    <span>
+                        <i className="fa-solid fa-pen-to-square"></i>
+                    </span>
+                </button>
+
+                {/* History */}
+                <ul className="history">
+                    {allthreads?.map((thread) => (
+                        <li
+                            key={thread.threadId}
+                            onClick={() =>
+                                changeThread(thread.threadId)
+                            }
+                            className={
+                                thread.threadId === currentThreadId
+                                    ? "highlighted"
+                                    : ""
+                            }
+                        >
+                            <span className="threadTitle">
+                                {thread.title}
+                            </span>
+
+                            <i
+                                className="fa-solid fa-trash"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    deleteThread(thread.threadId);
+                                }}
+                            ></i>
+                        </li>
+                    ))}
+                </ul>
+
+                {/* Signature */}
+                <div className="sign">
+                    <p>By Prathamesh Mandage &hearts;</p>
+                </div>
+            </section>
+        </>
+    );
 }
+
 export default Sidebar;
