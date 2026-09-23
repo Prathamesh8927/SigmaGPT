@@ -1,121 +1,479 @@
-.chatwindow{
+.chatwindow {
     background-color: #212121;
-    height: 100vh;
+
+    height: 100dvh;
     width: 100%;
+    min-width: 0;
+
     display: flex;
-    overflow-y: scroll;
+    overflow: hidden;
+
     justify-content: space-between;
     flex-direction: column;
-    align-items:center;
+    align-items: center;
+
     text-align: center;
 
+    position: relative;
 }
-.navbar{
+
+
+/* =====================================================
+   TOP NAVBAR
+===================================================== */
+
+.navbar {
     width: 100%;
+    min-height: 60px;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-/* navbar */
-.navbar span{
-    margin: 1rem 2rem ;
-}
-.usericonDiv{
-margin:  1rem 2rem;
+
+    flex-shrink: 0;
+
+    /* Separate top bar color */
+    background-color: #181818;
+
+    /* Visual separation */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+
+    position: relative;
+    z-index: 20;
 }
 
-.usericon{
-background-color: #339cff;
-height: 25px;
-width: 25px;
-border-radius: 50%;
-display: flex;
-align-items: center;
-justify-content: center;
-cursor: pointer;
+.navbarTitle {
+    margin: 1rem 2rem;
+
+    font-weight: 500;
 }
 
-/* chatinput */
-.chatinput{
+.navbarTitle i {
+    margin-left: 7px;
+}
+
+.usericonDiv {
+    margin: 1rem 2rem;
+
+    cursor: pointer;
+}
+
+.usericon {
+    background-color: #339cff;
+
+    height: 25px;
+    width: 25px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+}
+
+.usericon i {
+    font-size: 12px;
+}
+
+
+/* =====================================================
+   MOBILE MENU BUTTON
+===================================================== */
+
+.mobileMenuButton {
+    display: none;
+
+    width: 40px;
+    height: 40px;
+
+    margin: 8px;
+    padding: 0;
+
+    border: none;
+    border-radius: 8px;
+
+    background-color: transparent;
+
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+}
+
+.mobileMenuButton:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.mobileMenuButton i {
+    font-size: 19px;
+}
+
+
+/* =====================================================
+   CHAT INPUT AREA
+===================================================== */
+
+.chatinput {
     width: 100%;
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
     background-color: #212121;
+
+    padding: 0 10px;
+
+    flex-shrink: 0;
 }
-.inputbox{
-width: 100%;
-position: relative;
-max-width: 700px;
-display: flex;
-justify-content: space-between;
-align-items: center;
+
+
+/* =====================================================
+   SEARCH / PROMPT BOX
+===================================================== */
+
+.inputbox {
+    width: 90%;
+
+    max-width: 600px;
+
+    position: relative;
+
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
 }
-input{
+
+
+/* Input */
+
+.inputbox input {
     width: 100%;
+
     outline: none;
-    background-color: rgba(255,255,255,0.2);
-    padding: 12px;
+
+    background-color: rgba(255, 255, 255, 0.2);
+
+    padding: 12px 50px 12px 15px;
+
     font-size: 0.8rem;
+
     border-radius: 14px;
-    box-shadow:   rgba(0,0,0,0.5) 0 54px 55px,
-                  rgba(0,0,0,0.5) 0 -12px 30px,
-                  rgba(0,0,0,0.5) 0 4px 6px,
-                  rgba(0,0,0,0.5) 0 -3px 5px;
+
+    border: none;
+
+    box-sizing: border-box;
+
+    box-shadow:
+        rgba(0, 0, 0, 0.5) 0 54px 55px,
+        rgba(0, 0, 0, 0.5) 0 -12px 30px,
+        rgba(0, 0, 0, 0.5) 0 4px 6px,
+        rgba(0, 0, 0, 0.5) 0 -3px 5px;
 }
 
-input:focus{
-    outline:none;
+.inputbox input:focus {
+    outline: none;
 }
 
-#submit{
+
+/* =====================================================
+   SEND BUTTON
+===================================================== */
+
+#submit {
     cursor: pointer;
+
     height: 35px;
     width: 35px;
+
     font-size: 20px;
-    position:absolute;
-    right: 15px;
+
+    position: absolute;
+
+    right: 10px;
+
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-#submit i:hover{
+#submit i:hover {
     color: #fff;
-    
 }
-.info{
+
+
+/* =====================================================
+   DISCLAIMER TEXT
+===================================================== */
+
+.info {
     font-size: 0.8rem;
+
     padding: 0.5rem;
+
+    margin: 0;
+
     color: #b4b4b4;
+
+    text-align: center;
 }
-.dropDown{
+
+
+/* =====================================================
+   LOADER
+===================================================== */
+
+.loaderContainer {
+    min-height: 0;
+}
+
+
+/* =====================================================
+   PROFILE DROPDOWN
+===================================================== */
+
+.dropDown {
     position: absolute;
+
     top: 4rem;
     right: 4rem;
+
     width: 150px;
 
-    background-color: transparent;
+    background-color: #2a2a2a;
+
     padding: 0.3rem 0.5rem;
+
     border-radius: 6px;
+
     text-align: left;
+
     z-index: 1000;
-    box-shadow: 0px 2px 8px rgba(0,0,0,0.5);
+
+    box-shadow:
+        0px 2px 8px rgba(0, 0, 0, 0.5);
 }
-.dropDownitem{
+
+.dropDownitem {
     font-size: 0.8rem;
+
     margin: 0.3rem 0rem;
-}
-.dropDownitem i{
-    font-size: 0.5rem;
-    margin: 0.3rem 0rem;
-    padding: 0.5rem 0.5rem;
+
+    padding: 6px;
+
     cursor: pointer;
 }
 
-.dropDownitem:hover{
-    background-color: rgba(180,180,180,0.1);
-    border-radius: 6px;
+.dropDownitem i {
+    font-size: 0.7rem;
 
+    margin-right: 8px;
+
+    padding: 0.3rem;
+
+    cursor: pointer;
+}
+
+.dropDownitem:hover {
+    background-color: rgba(180, 180, 180, 0.1);
+
+    border-radius: 6px;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 768px) {
+
+    .mobileMenuButton {
+        display: flex;
+    }
+
+    .navbar {
+        min-height: 58px;
+    }
+
+    .navbarTitle {
+        margin: 1rem;
+
+        font-size: 15px;
+    }
+
+    .usericonDiv {
+        margin: 1rem;
+    }
+
+
+    /* Smaller search box on tablet */
+
+    .inputbox {
+        width: 88%;
+
+        max-width: 580px;
+    }
+
+    .chatinput {
+        padding: 0 10px;
+    }
+
+
+    .dropDown {
+        right: 15px;
+
+        top: 55px;
+    }
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 480px) {
+
+    .chatwindow {
+        width: 100%;
+
+        height: 100dvh;
+    }
+
+
+    /* Top bar */
+
+    .navbar {
+        min-height: 55px;
+
+        background-color: #161616;
+
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+
+    /* Hamburger */
+
+    .mobileMenuButton {
+        width: 36px;
+        height: 36px;
+
+        margin: 7px;
+    }
+
+    .mobileMenuButton i {
+        font-size: 18px;
+    }
+
+
+    /* Title */
+
+    .navbarTitle {
+        margin: 0;
+
+        font-size: 14px;
+    }
+
+
+    /* Profile */
+
+    .usericonDiv {
+        margin: 7px;
+    }
+
+    .usericon {
+        width: 28px;
+        height: 28px;
+    }
+
+
+    /* Chat input */
+
+    .chatinput {
+        padding: 0 8px;
+    }
+
+
+    /* Smaller mobile search box */
+
+    .inputbox {
+        width: 92%;
+
+        max-width: none;
+    }
+
+
+    .inputbox input {
+        padding: 11px 48px 11px 13px;
+
+        font-size: 14px;
+
+        border-radius: 13px;
+    }
+
+
+    /* Send button */
+
+    #submit {
+        right: 7px;
+    }
+
+
+    /* Disclaimer */
+
+    .info {
+        font-size: 10px;
+
+        padding: 6px 2px;
+
+        text-align: center;
+    }
+
+
+    /* Dropdown */
+
+    .dropDown {
+        top: 52px;
+
+        right: 8px;
+
+        width: 145px;
+    }
+}
+
+
+/* =====================================================
+   VERY SMALL PHONES
+===================================================== */
+
+@media (max-width: 360px) {
+
+    .navbarTitle {
+        font-size: 13px;
+    }
+
+
+    .chatinput {
+        padding: 0 6px;
+    }
+
+
+    .inputbox {
+        width: 94%;
+    }
+
+
+    .inputbox input {
+        font-size: 13px;
+    }
+
+
+    .info {
+        font-size: 9px;
+    }
 }
