@@ -7,10 +7,10 @@
 
     color: #b4b4b4;
 
-    height: 100dvh;
+    height: 100%;
 
-    width: 320px;
-    min-width: 320px;
+    width: 280px;
+    min-width: 280px;
 
     display: flex;
     flex-direction: column;
@@ -21,7 +21,7 @@
 
     box-sizing: border-box;
 
-    border-right: 1px solid rgba(255, 255, 255, 0.06);
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
 
     overflow: hidden;
 }
@@ -118,7 +118,9 @@
 }
 
 
-/* Chrome / Edge scrollbar */
+/* =====================================================
+   HISTORY SCROLLBAR
+===================================================== */
 
 .history::-webkit-scrollbar {
     width: 6px;
@@ -315,7 +317,7 @@
 
 
 /* =====================================================
-   TABLET / MOBILE SIDEBAR
+   TABLET / MOBILE
 ===================================================== */
 
 @media (max-width: 768px) {
@@ -326,7 +328,7 @@
         top: 0;
         left: 0;
 
-        width: min(320px, 86vw);
+        width: min(300px, 86vw);
 
         min-width: 0;
 
@@ -344,7 +346,7 @@
     }
 
 
-    /* OPEN SIDEBAR */
+    /* OPEN */
 
     .sidebar.sidebarOpen {
         transform: translateX(0);
@@ -400,7 +402,7 @@
     }
 
 
-    /* DELETE ICON */
+    /* DELETE */
 
     .fa-trash {
         opacity: 0.8;
@@ -425,7 +427,6 @@
         width: 86vw;
     }
 
-
     .newChatButton {
         margin-left: 10px;
         margin-right: 10px;
@@ -433,18 +434,15 @@
         width: calc(100% - 20px);
     }
 
-
     .history li {
         font-size: 13px;
 
         padding: 11px;
     }
 
-
     .threadTitle {
         width: calc(100% - 25px);
     }
-
 
     .sign {
         font-size: 12px;
@@ -465,11 +463,9 @@
         width: 90vw;
     }
 
-
     .newChatButton {
         min-height: 46px;
     }
-
 
     .history li {
         min-height: 42px;
