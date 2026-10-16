@@ -1,477 +1,507 @@
+
 /* =====================================================
-   SIDEBAR
+   CHAT CONTENT — MAIN SCROLLABLE AREA
 ===================================================== */
 
-.sidebar {
-    background-color: #171717;
-
-    color: #b4b4b4;
-
-    height: 100%;
-
-    width: 280px;
-    min-width: 280px;
+.chatContent {
+    flex: 1;
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
 
     display: flex;
     flex-direction: column;
-
-    position: relative;
-
-    z-index: 1001;
-
-    box-sizing: border-box;
-
-    border-right: 1px solid rgba(255, 255, 255, 0.08);
-
-    overflow: hidden;
-}
-
-
-/* =====================================================
-   NEW CHAT BUTTON
-===================================================== */
-
-.newChatButton {
-    display: flex;
-
-    justify-content: space-between;
     align-items: center;
-
-    margin: 12px;
-
-    padding: 10px 12px;
-
-    width: calc(100% - 24px);
-
-    min-height: 48px;
-
-    border-radius: 10px;
-
-    background-color: transparent;
-
-    border: 1px solid rgba(255, 255, 255, 0.12);
-
-    cursor: pointer;
-
-    flex-shrink: 0;
-
-    transition:
-        background-color 0.2s ease,
-        border-color 0.2s ease;
-}
-
-.newChatButton:hover {
-    background-color: rgba(255, 255, 255, 0.08);
-
-    border-color: rgba(255, 255, 255, 0.2);
-}
-
-
-/* =====================================================
-   LOGO
-===================================================== */
-
-.logo {
-    height: 27px;
-    width: 27px;
-
-    background-color: white;
-
-    border-radius: 50%;
-
-    object-fit: cover;
-}
-
-.newChatButton span {
-    font-size: 19px;
-
-    background-color: transparent;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-}
-
-
-/* =====================================================
-   CHAT HISTORY
-===================================================== */
-
-.history {
-    margin: 6px 8px 8px;
-
-    padding: 4px;
-
-    flex: 1;
-
-    min-height: 0;
 
     overflow-y: auto;
     overflow-x: hidden;
 
-    scrollbar-width: thin;
+    box-sizing: border-box;
+    padding: 24px 20px 32px;
 
-    scrollbar-color:
-        rgba(255, 255, 255, 0.2)
-        transparent;
+    color: #ececec;
+    background-color: #212121;
+
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.22) transparent;
+
+    overscroll-behavior-y: contain;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+}
+
+.chatContent::-webkit-scrollbar {
+    width: 7px;
+}
+
+.chatContent::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.chatContent::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.20);
+    border-radius: 10px;
+}
+
+.chatContent::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.35);
 }
 
 
 /* =====================================================
-   HISTORY SCROLLBAR
+   NEW CHAT TITLE
 ===================================================== */
 
-.history::-webkit-scrollbar {
-    width: 6px;
+.newChatTitle {
+    width: 100%;
+    max-width: 760px;
+
+    margin: auto 0;
+    padding: 20px 0;
+
+    color: #ececec;
+    font-size: clamp(25px, 4vw, 34px);
+    font-weight: 600;
+    line-height: 1.35;
+    text-align: center;
+
+    overflow-wrap: anywhere;
 }
 
-.history::-webkit-scrollbar-track {
+
+/* =====================================================
+   CONVERSATION WIDTH
+===================================================== */
+
+.chats {
+    width: 100%;
+    max-width: 760px;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    gap: 28px;
+
+    margin: 0 auto;
+    padding: 12px 0 24px;
+
+    box-sizing: border-box;
+}
+
+
+/* =====================================================
+   MESSAGE ROWS
+===================================================== */
+
+.userDiv,
+.gptDiv {
+    width: 100%;
+    min-width: 0;
+
+    display: flex;
+    align-items: flex-start;
+
+    box-sizing: border-box;
+}
+
+
+/* User messages align to the right */
+
+.userDiv {
+    justify-content: flex-end;
+}
+
+
+/* Assistant messages use the full conversation width */
+
+.gptDiv {
+    justify-content: flex-start;
+}
+
+
+/* =====================================================
+   USER MESSAGE BUBBLE
+===================================================== */
+
+.usermessage {
+    max-width: min(80%, 560px);
+    min-width: 0;
+
+    margin: 0;
+    padding: 12px 18px;
+
+    color: #f4f4f4;
+    background-color: #303030;
+
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 22px;
+
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.65;
+
+    text-align: left;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+
+    box-sizing: border-box;
+}
+
+
+/* =====================================================
+   ASSISTANT MESSAGE
+===================================================== */
+
+.gptmessage {
+    width: 100%;
+    min-width: 0;
+
+    margin: 0;
+    padding: 0;
+
+    color: #ececec;
+
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.8;
+
+    text-align: left;
+
+    overflow-wrap: anywhere;
+    word-break: normal;
+
+    box-sizing: border-box;
+}
+
+
+/* =====================================================
+   MARKDOWN SPACING
+===================================================== */
+
+.gptmessage > :first-child {
+    margin-top: 0;
+}
+
+.gptmessage > :last-child {
+    margin-bottom: 0;
+}
+
+.gptmessage p {
+    margin: 0 0 16px;
+}
+
+.gptmessage h1,
+.gptmessage h2,
+.gptmessage h3,
+.gptmessage h4 {
+    color: #f5f5f5;
+
+    font-weight: 600;
+    line-height: 1.35;
+
+    margin: 26px 0 12px;
+}
+
+.gptmessage h1 {
+    font-size: 1.8rem;
+}
+
+.gptmessage h2 {
+    font-size: 1.5rem;
+}
+
+.gptmessage h3 {
+    font-size: 1.22rem;
+}
+
+.gptmessage h4 {
+    font-size: 1.05rem;
+}
+
+.gptmessage ul,
+.gptmessage ol {
+    margin: 8px 0 18px;
+    padding-left: 28px;
+}
+
+.gptmessage li {
+    padding-left: 4px;
+    margin: 5px 0;
+}
+
+.gptmessage li > p {
+    margin-bottom: 6px;
+}
+
+.gptmessage blockquote {
+    margin: 18px 0;
+    padding: 4px 0 4px 16px;
+
+    color: #c9c9c9;
+
+    border-left: 3px solid #666;
+}
+
+.gptmessage hr {
+    height: 1px;
+    margin: 24px 0;
+
+    border: 0;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.gptmessage a {
+    color: #8ab4f8;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+
+    overflow-wrap: anywhere;
+}
+
+.gptmessage a:hover {
+    color: #b6d2ff;
+}
+
+
+/* =====================================================
+   INLINE CODE
+===================================================== */
+
+.gptmessage :not(pre) > code {
+    padding: 3px 6px;
+
+    color: #f1c9a5;
+    background-color: #303030;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 5px;
+
+    font-family: Consolas, Monaco, "Courier New", monospace;
+    font-size: 0.88em;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =====================================================
+   CODE BLOCKS
+===================================================== */
+
+.gptmessage pre {
+    width: 100%;
+    max-width: 100%;
+
+    margin: 16px 0 22px;
+    padding: 18px;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    background-color: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 12px;
+
+    box-sizing: border-box;
+
+    white-space: pre;
+    tab-size: 4;
+
+    scrollbar-width: thin;
+    scrollbar-color: #505050 transparent;
+}
+
+.gptmessage pre code {
+    display: block;
+
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+
+    color: #e6edf3;
     background: transparent;
+
+    font-family: Consolas, Monaco, "Courier New", monospace;
+    font-size: 13px;
+    line-height: 1.7;
+
+    overflow-wrap: normal;
+    word-break: normal;
 }
 
-.history::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 255, 255, 0.2);
+.gptmessage pre::-webkit-scrollbar {
+    height: 7px;
+}
+
+.gptmessage pre::-webkit-scrollbar-thumb {
+    background: #505050;
+    border-radius: 10px;
+}
+
+
+/* =====================================================
+   TABLES
+===================================================== */
+
+.gptmessage table {
+    display: block;
+
+    width: 100%;
+    max-width: 100%;
+
+    margin: 18px 0;
+
+    border-collapse: collapse;
+
+    overflow-x: auto;
+
+    font-size: 14px;
+}
+
+.gptmessage th,
+.gptmessage td {
+    padding: 10px 12px;
+
+    border: 1px solid #444;
+    text-align: left;
+    vertical-align: top;
+}
+
+.gptmessage th {
+    background-color: #303030;
+    font-weight: 600;
+}
+
+.gptmessage tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.025);
+}
+
+
+/* =====================================================
+   IMAGES
+===================================================== */
+
+.gptmessage img {
+    display: block;
+
+    max-width: 100%;
+    height: auto;
+
+    margin: 16px 0;
 
     border-radius: 10px;
 }
 
 
 /* =====================================================
-   HISTORY ITEMS
+   STRONG TEXT
 ===================================================== */
 
-.history li {
-    list-style-type: none;
-
-    cursor: pointer;
-
-    padding: 10px 12px;
-
-    margin-bottom: 4px;
-
-    font-size: 14px;
-
-    border: 1px solid transparent;
-
-    border-radius: 9px;
-
-    position: relative;
-
-    display: flex;
-
-    align-items: center;
-
-    min-height: 42px;
-
-    box-sizing: border-box;
-
-    transition:
-        background-color 0.15s ease,
-        border-color 0.15s ease;
-}
-
-.history li:hover {
-    background-color: rgba(180, 180, 180, 0.12);
+.gptmessage strong {
+    color: #f5f5f5;
+    font-weight: 650;
 }
 
 
 /* =====================================================
-   THREAD TITLE
-===================================================== */
-
-.threadTitle {
-    display: block;
-
-    width: calc(100% - 28px);
-
-    overflow: hidden;
-
-    text-overflow: ellipsis;
-
-    white-space: nowrap;
-
-    color: #e5e5e5;
-}
-
-
-/* =====================================================
-   DELETE BUTTON
-===================================================== */
-
-.fa-trash {
-    opacity: 0;
-
-    position: absolute;
-
-    right: 11px;
-
-    cursor: pointer;
-
-    font-size: 13px;
-
-    transition: opacity 0.15s ease;
-}
-
-.history li:hover .fa-trash {
-    opacity: 1;
-
-    color: #fff;
-}
-
-.fa-trash:hover {
-    color: #f87171 !important;
-}
-
-
-/* =====================================================
-   ACTIVE THREAD
-===================================================== */
-
-.highlighted {
-    background-color: rgba(255, 255, 255, 0.12);
-
-    border-radius: 9px;
-
-    border-color: rgba(255, 255, 255, 0.04);
-}
-
-.highlighted:hover {
-    background-color: rgba(255, 255, 255, 0.16);
-}
-
-
-/* =====================================================
-   SIDEBAR FOOTER
-===================================================== */
-
-.sign {
-    margin: 8px 12px 12px;
-
-    padding: 12px 8px;
-
-    font-size: 13px;
-
-    text-align: center;
-
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-
-    color: #8f8f8f;
-
-    flex-shrink: 0;
-}
-
-.sign p {
-    margin: 0;
-}
-
-
-/* =====================================================
-   MOBILE CLOSE BUTTON
-===================================================== */
-
-.mobileCloseButton {
-    display: none;
-
-    position: absolute;
-
-    top: 12px;
-    right: 12px;
-
-    width: 38px;
-    height: 38px;
-
-    margin: 0;
-    padding: 0;
-
-    align-items: center;
-    justify-content: center;
-
-    border: none;
-
-    border-radius: 8px;
-
-    background-color: rgba(255, 255, 255, 0.08);
-
-    cursor: pointer;
-
-    z-index: 10;
-}
-
-.mobileCloseButton:hover {
-    background-color: rgba(255, 255, 255, 0.15);
-}
-
-.mobileCloseButton i {
-    font-size: 18px;
-}
-
-
-/* =====================================================
-   SIDEBAR OVERLAY
-===================================================== */
-
-.sidebarOverlay {
-    display: none;
-}
-
-
-/* =====================================================
-   TABLET / MOBILE
+   TABLET
 ===================================================== */
 
 @media (max-width: 768px) {
-
-    .sidebar {
-        position: fixed;
-
-        top: 0;
-        left: 0;
-
-        width: min(300px, 86vw);
-
-        min-width: 0;
-
-        height: 100dvh;
-
-        transform: translateX(-105%);
-
-        transition:
-            transform 0.25s ease;
-
-        box-shadow:
-            8px 0 30px rgba(0, 0, 0, 0.5);
-
-        border-right: 1px solid rgba(255, 255, 255, 0.1);
+    .chatContent {
+        padding: 22px 20px 26px;
     }
 
-
-    /* OPEN */
-
-    .sidebar.sidebarOpen {
-        transform: translateX(0);
+    .chats {
+        max-width: 100%;
+        gap: 25px;
     }
 
-
-    /* OVERLAY */
-
-    .sidebarOverlay {
-        display: block;
-
-        position: fixed;
-
-        inset: 0;
-
-        background-color: rgba(0, 0, 0, 0.6);
-
-        backdrop-filter: blur(2px);
-
-        z-index: 1000;
+    .usermessage {
+        max-width: 85%;
     }
 
-
-    /* CLOSE BUTTON */
-
-    .mobileCloseButton {
-        display: flex;
-    }
-
-
-    /* NEW CHAT */
-
-    .newChatButton {
-        margin-top: 62px;
-
-        min-height: 48px;
-    }
-
-
-    /* HISTORY */
-
-    .history {
-        margin: 8px;
-
-        padding: 4px;
-    }
-
-
-    .history li {
-        padding: 11px 12px;
-
-        min-height: 44px;
-    }
-
-
-    /* DELETE */
-
-    .fa-trash {
-        opacity: 0.8;
-    }
-
-
-    /* FOOTER */
-
-    .sign {
-        margin-bottom: 14px;
+    .gptmessage {
+        font-size: 15px;
+        line-height: 1.8;
     }
 }
 
 
 /* =====================================================
-   SMALL MOBILE
+   MOBILE
 ===================================================== */
 
 @media (max-width: 480px) {
-
-    .sidebar {
-        width: 86vw;
+    .chatContent {
+        padding: 18px 15px 22px;
     }
 
-    .newChatButton {
-        margin-left: 10px;
-        margin-right: 10px;
-
-        width: calc(100% - 20px);
+    .newChatTitle {
+        font-size: 25px;
+        padding: 16px 0;
     }
 
-    .history li {
-        font-size: 13px;
-
-        padding: 11px;
+    .chats {
+        gap: 23px;
+        padding: 8px 0 18px;
     }
 
-    .threadTitle {
-        width: calc(100% - 25px);
+    .usermessage {
+        max-width: 90%;
+        padding: 11px 15px;
+
+        font-size: 14px;
+        line-height: 1.65;
+
+        border-radius: 19px;
     }
 
-    .sign {
+    .gptmessage {
+        font-size: 15px;
+        line-height: 1.75;
+    }
+
+    .gptmessage h1 {
+        font-size: 1.55rem;
+    }
+
+    .gptmessage h2 {
+        font-size: 1.3rem;
+    }
+
+    .gptmessage h3 {
+        font-size: 1.12rem;
+    }
+
+    .gptmessage pre {
+        padding: 13px;
+        border-radius: 9px;
+    }
+
+    .gptmessage pre code {
         font-size: 12px;
+    }
 
-        margin-left: 10px;
-        margin-right: 10px;
+    .gptmessage table {
+        font-size: 12px;
+    }
+
+    .gptmessage th,
+    .gptmessage td {
+        padding: 8px;
     }
 }
 
 
 /* =====================================================
-   VERY SMALL PHONES
+   REDUCED MOTION
 ===================================================== */
 
-@media (max-width: 360px) {
-
-    .sidebar {
-        width: 90vw;
-    }
-
-    .newChatButton {
-        min-height: 46px;
-    }
-
-    .history li {
-        min-height: 42px;
-
-        padding: 10px;
-
-        font-size: 12px;
+@media (prefers-reduced-motion: reduce) {
+    .chatContent {
+        scroll-behavior: auto;
     }
 }
